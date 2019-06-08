@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <script>
+      var ancho = window.innerWidth;
+      var alto = window.innerHeight;
+      var lienzo;
+
+
+      function initialize (){
+        var canvas = document.getElementById("canvas");
+        lienzo = canvas.getContext("2d");
+        lienzo.strokeWidth=5;
+
+        canvas.width = ancho;
+        canvas.height=alto;
+     }
+
+     addEventListener("click", function(){
+       var ball= new Ball (event.clientX,event.clientY);
+       ball.update();
+     });
+
+     function Ball(xPos,yPos){
+       this.color="rgba(0,102,255,1)";
+       this.radius = Math.random()* 20 + 14;
+       this.x = xPos;
+       this.y = yPos;
+
+       this.update = function(){
+         lienzo.beginPath();
+         lienzo.arc(this.x, this.y,
+                this.radius, 0 ,
+                2 * Math.PI);
+
+          lienzo.fillStyle = this.color;
+          lienzo.fill();
+        }
+  }
+
+  window.onload = initialize ;
+
+  </script>
+
+      <title>
+        Circles
+      </title>
+    </head>
+    <body>
+      <canvas id="canvas">
+      </canvas>
+    </body>
+</html>

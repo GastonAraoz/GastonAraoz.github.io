@@ -1,20 +1,57 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <script>
-      function sayHello(){
-         alert("Hola soy Gaston")
-      }
-      function sayHello2(){
-         document.getElementById("greet").innerHTML="Esto lo creo Gaston Araoz gracias a mi profesor Jose"
+  <head>
+    <script>
+      var myName="Gaston";
+      console.log(myName);
+      var age=11;
+      console.log(age);
+      var myAgeNextYear=age+1;
+      console.log("El año que viene voy a tener "+myAgeNextYear)
+      var imOld=false;
+      imOld=age<12;
+      if (age>50){
+        console.log("soy viejo")
+      } else {
+        console.log("Soy Joven")
       }
 
 
-  </script>
-</head>
+
+        function sayHello(){
+           alert("MALA SUERTE!");
+        }
+
+        function sayHello2(){
+          document.getElementById("greet").innerHTML="Todo Muy Bien "
+        }
+    </script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  </head>
+
 <body>
-  <p id="greet"> Hola como estas </p>
-   <Button type="button" onclick="sayHello()">Bien</button>
-   <Button type="button" onclick="sayHello2()">Muy Bien</button>
+  <p id="greet"> Saludar a Gaston </p>
+
+   <Button type="button" onclick="sayHello2()">Que Tal</button>
+
+
+         <div class="container">
+           <div class="jumbotron">
+           <h1 id="Greet">
+            Bienvenidos!
+          </h1>
+          <p closs="lead">
+            Este es el menu que hemos creado en CODE DOJO SALTA
+          </p>
+      </div>
+  </div>
+  <button type="button" onclick="sayHello()" class="btn btn-primary">No hagas click o vas a tener mala suerte</button>
+</button>
+<button type="button" class="btn btn-primary" onclick="location.href='Circulos.html'">
+  circulos
+
+</button>
 </body>
 </html>
