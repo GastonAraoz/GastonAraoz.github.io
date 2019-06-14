@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="widht=device-widht, initial-scale=1, user-scalable=no"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"> 
     <script>
       var ancho = window.innerWidth;
       var alto = window.innerHeight;
@@ -24,7 +24,7 @@
      }
 
      function Ball(xPos,yPos){
-       this.color="rgba(0,102,255,1)";
+       this.color=generarColor();
        this.radius = Math.random()* 20 + 14;
        this.x = xPos;
        this.y = yPos;
@@ -39,9 +39,18 @@
           lienzo.fill();
         }
   }
+   
+  window.onload = initialize 
 
-  window.onload = initialize ;
+function generarColor(){
+  var rojo=Math.random()* 255;
+  var verde=Math.random()* 255;
+  var azul=Math.random()* 255;
+  var alpha=Math.random();
+var color="rgba("+rojo+","+verde+","+azul+","+alpha+")";
+return color;
 
+}
   </script>
 
       <title>
