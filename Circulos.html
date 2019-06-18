@@ -2,56 +2,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"> 
-    <script>
-      var ancho = window.innerWidth;
-      var alto = window.innerHeight;
-      var lienzo;
+    <script src="Circulos.js">
+    </script>
 
-
-      function initialize (){
-        var canvas = document.getElementById("canvas");
-
-        canvas.addEventListener("click", function(){
-          var ball= new Ball (event.clientX,event.clientY);
-          ball.update();
-        });
-
-        lienzo = canvas.getContext("2d");
-        lienzo.strokeWidth=5;
-
-        canvas.width = ancho;
-        canvas.height=alto;
-     }
-
-     function Ball(xPos,yPos){
-       this.color=generarColor();
-       this.radius = Math.random()* 20 + 14;
-       this.x = xPos;
-       this.y = yPos;
-
-       this.update = function(){
-         lienzo.beginPath();
-         lienzo.arc(this.x, this.y,
-                this.radius, 0 ,
-                2 * Math.PI);
-
-          lienzo.fillStyle = this.color;
-          lienzo.fill();
-        }
-  }
-   
-  window.onload = initialize 
-
-function generarColor(){
-  var rojo=Math.random()* 255;
-  var verde=Math.random()* 255;
-  var azul=Math.random()* 255;
-  var alpha=Math.random();
-var color="rgba("+rojo+","+verde+","+azul+","+alpha+")";
-return color;
-
-}
-  </script>
+ 
 
       <title>
         Circles
