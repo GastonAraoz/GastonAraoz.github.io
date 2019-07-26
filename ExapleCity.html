@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            body {
+                background-color:white;
+                margin:0;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="https://threejs.org/build/three.min.js"></script>
+        <script> 
+var camera, scene, renderer;
+let sign = -1;
+let speed = 4;
+
+function setup(){
+    setupTHREEJS();
+    setupWorld();
+    animate();
+}
+
+function setupTHREEJS (){
+    scene = new THREE.Scene(); 
+    scene.background= new THREE.Color ("blue");
+    
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.y = 400;
+    camera.position.z = 400;
+    camera.rotation.x = -45 * Math.PI / 180;  
+
+    renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+}
+
+function setupWorld(){
+    // Setup the Floor for the City
+    var geo = new THREE.PlaneGeometry(2000,2000,20,20)
+    var geoMaterial= new THREE.MeshBasicMaterial ({
+        color: 0x9db3b
+    });
+    var geoMesh= new THREE.Mesh(geo,geoMaterial)
+    geoMesh.rotation.x = -90 * Math.PI / 180;
+    scene.add (geoMesh);
+    
+    //Setup The Basic Building
+    var geo= new THREE.CubeGeometry(1,1,1);
+    geo.applyMatrix(new THREE.Matrix4().makeTranslation(0, .5, 0));
+    var material= new THREE.MeshDepthMaterial();
+
+    //Setup The City
+    var cityGeometry = new THREE.Geometry();
+    for (var i = 0; i < 100; i++){
+        var building = new THREE.Mesh(geo.clone());
+        building.position.x = Math.floor(Math.random() * 200 - 100) * 4;
+        building.position.z = Math.floor(Math.random() * 200 - 100) * 4;
+        building.scale.x = Math.random() * 50 + 10;
+        building.scale.y = Math.random() * building.scale.x * 8 + 8;
+        building.scale.z = building.scale.x;
+        THREE.GeometryUtils.merge(cityGeometry,building);
+
+    }  
+    var city= new THREE.Mesh(cityGeometry,material);
+    scene.add(city);     
+}
+
+function animate(){
+    requestAnimationFrame(animate);
+    if (camera.position.z < 0 || camera.position.z > 400 ) {
+        sign=sign * -1 ;
+    }
+
+
+camera.position.z=camera.position.z +speed *sign;
+renderer.render( scene, camera);
+}
+
+setup();
+
+        </script>
+    </body>
+</html>
