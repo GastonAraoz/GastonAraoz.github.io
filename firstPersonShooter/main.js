@@ -294,11 +294,13 @@ function distance(x1, y1, x2, y2) {
 function checkWallCollision(v) {
     var c = getMapSector(v);
     return map[c.x][c.z] > 0;
-    function getMapSector(v) {
-        var x = Math.floor((v.x + UNITSIZE / 2) / UNITSIZE + mapW/2);
-        var z = Math.floor((v.z + UNITSIZE / 2) / UNITSIZE + mapW/2);
-        return {x: x, z: z};
-    }
+    
+}
+
+function getMapSector(v) {
+    var x = Math.floor((v.x + UNITSIZE / 2) / UNITSIZE + mapW/2);
+    var z = Math.floor((v.z + UNITSIZE / 2) / UNITSIZE + mapW/2);
+    return {x: x, z: z};
 }
 
 // Radar
@@ -308,12 +310,12 @@ function drawRadar() {
     for (var i = 0; i < mapW; i++) {
         for (var j = 0, m = map[i].length; j < m; j++) {
             var d = 0;
-            for (var k = 0, n = ai.length; k < n; k++) {
-                var e = getMapSector(ai[k].position);
-                if (i == e.x && j == e.z) {
-                    d++;
-                }
-            }
+            //for (var k = 0, n = ai.length; k < n; k++) {
+                //var e = getMapSector(ai[k].position);
+                //if (i == e.x && j == e.z) {
+                    //d++;
+                //}
+            //}
             if (i == c.x && j == c.z && d == 0) {
                 context.fillStyle = '#0000FF';
                 context.fillRect(i * 20, j * 20, (i+1)*20, (j+1)*20);
