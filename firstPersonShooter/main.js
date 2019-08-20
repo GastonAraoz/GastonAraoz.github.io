@@ -36,7 +36,7 @@ $(document).ready(function() {
         e.preventDefault();
         $(this).fadeOut();
         init();
-        //setInterval(drawRadar, 1000);
+        setInterval(drawRadar, 1000);
         animate();
 
     });
@@ -56,6 +56,8 @@ function init() {
     scene = new t.Scene(); // Holds all objects in the canvas
     scene.fog = new t.FogExp2(0xD6F1FF, 0.0005); // color, density
     
+
+
     // Set up camera
     cam = new t.PerspectiveCamera(60, ASPECT, 1, 10000); // FOV, aspect, near, far
     cam.position.y = UNITSIZE * .2;
@@ -81,6 +83,8 @@ function init() {
       // Track mouse position so we know where to shoot
       document.addEventListener( 'mousemove', onDocumentMouseMove, false );
   
+      $('body').append('<canvas id="radar" width="200" height="200"></canvas>');
+
 }
 
 
@@ -294,5 +298,46 @@ function checkWallCollision(v) {
         var x = Math.floor((v.x + UNITSIZE / 2) / UNITSIZE + mapW/2);
         var z = Math.floor((v.z + UNITSIZE / 2) / UNITSIZE + mapW/2);
         return {x: x, z: z};
+    }
+}
+
+// Radar
+function drawRadar() {
+    var c = getMapSector(cam.position), context = document.getElementById('radar').getContext('2d');
+    context.font = '10px Helvetica';
+    for (var i = 0; i < mapW; i++) {
+        for (var j = 0, m = map[i].length; j < m; j++) {
+            var d = 0;
+            for (var k = 0, n = ai.length; k < n; k++) {
+                var e = getMapSector(ai[k].position);
+                if (i == e.x && j == e.z) {
+                    d++;
+                }
+            }
+            if (i == c.x && j == c.z && d == 0) {
+                context.fillStyle = '#0000FF';
+                context.fillRect(i * 20, j * 20, (i+1)*20, (j+1)*20);
+            }
+            else if (i == c.x && j == c.z) {
+                context.fillStyle = '#AA33FF';
+                context.fillRect(i * 20, j * 20, (i+1)*20, (j+1)*20);
+                context.fillStyle = '#000000';
+                context.fillText(''+d, i*20+8, j*20+12);
+            }
+            else if (d > 0 && d < 10) {
+                context.fillStyle = '#FF0000';
+                context.fillRect(i * 20, j * 20, (i+1)*20, (j+1)*20);
+                context.fillStyle = '#000000';
+                context.fillText(''+d, i*20+8, j*20+12);
+            }
+            else if (map[i][j] > 0) {
+                context.fillStyle = '#666666';
+                context.fillRect(i * 20, j * 20, (i+1)*20, (j+1)*20);
+            }
+            else {
+                context.fillStyle = '#CCCCCC';
+                context.fillRect(i * 20, j * 20, (i+1)*20, (j+1)*20);
+            }
+        }
     }
 }
