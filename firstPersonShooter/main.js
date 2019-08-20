@@ -93,7 +93,7 @@ function setupScene() {
     // Geometry: floor
     var floor = new t.Mesh(
             new t.CubeGeometry(units * UNITSIZE, 10, units * UNITSIZE),
-            new t.MeshLambertMaterial({color: 0xEDCBA0,/*map: t.ImageUtils.loadTexture('images/floor-1.jpg')*/})
+            new t.MeshLambertMaterial({color: 0xEDCBA0,/*map: t.ImageUtils.loadTexture('Images/floor-1.jpg')*/})
     );
     scene.add(floor);
 
@@ -120,7 +120,7 @@ function setupScene() {
     // Health cube
     healthcube = new t.Mesh(
             new t.CubeGeometry(30, 30, 30),
-            new t.MeshBasicMaterial({map: t.ImageUtils.loadTexture('images/health.png')})
+            new t.MeshBasicMaterial({map: t.ImageUtils.loadTexture('Images/health.png')})
     );
     healthcube.position.set(-UNITSIZE-15, 35, -UNITSIZE-15);
     scene.add(healthcube);
