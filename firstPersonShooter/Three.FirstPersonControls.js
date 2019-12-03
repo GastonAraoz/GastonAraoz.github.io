@@ -201,7 +201,7 @@ THREE.FirstPersonControls = function ( object, domElement ) {
                     this.object.translateZ( - actualMoveSpeed );
                 }
             }
-
+        
             if ( this.moveLeft ) {
                 this.object.translateX( - actualMoveSpeed );
                 if (checkWallCollision(this.object.position)) {

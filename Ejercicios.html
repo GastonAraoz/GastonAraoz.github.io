@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <style>
+        div{
+            margin:10px;
+        }
+        label {
+font-size:48px;
+        }
+    </style>     
+  <script>
+     
+    function imprimirNumeros(n){
+        var contar;
+        for (contar = 1; contar <= n; contar++) {
+            console.log(contar);
+        }
+    }
+
+    function esMultiplo(number, divisor){
+        var resto = number % divisor;
+        if (resto === 0){
+            console.log ("El numero", number, "Es multiplo de ",divisor);
+            return true;
+        } else {
+            console.log ("El Numero", number, "No es multiplo de",divisor);
+            return false;
+        }
+        
+    }
+
+    function esparoimpar(n){
+        if (esMultiplo(n,2)){
+            showResult ("El Numero Es Par")
+        } else {
+            showResult ("El Numero Es Impar")
+        }
+    }
+
+    function esmultiplode3ono(n){
+        if (esMultiplo(n,3)){
+            showResult ("El Numero Es Multiplo De 3")
+        } else {
+            showResult ("El Numero No Es Multiplo De 3")
+        }
+
+    }
+    
+    function sumar(n,m){
+     const resultado = parseInt(n, 10) + parseInt(m,10);
+     showResult("resultado = " + resultado);
+    }
+
+    function showResult(result){
+        document.getElementById("resultsSection").innerHTML = result;
+    }
+
+   function multiplicar(n1, n2) {
+    const resultado = parseInt(n1) * parseInt(n2);
+    showResult(resultado);
+    
+   }
+   function dividir(n1, n2) {
+    const resto = n1 % n2;
+    const resultado = (parseInt(n1) -resto) / parseInt(n2);  
+    showResult("Resultado="+resultado + " &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Resto="+resto);
+
+   }
+
+  </script>
+         
+    </head>
+    <body>
+        <h1>
+            Ejercicios
+        </h1>
+        
+    <div>
+        <input type ="text" id ="inputID">
+        <input type ="text" id ="inputID2">
+    </div>
+    <div>     
+        <button onclick="imprimirNumeros(document.getElementById('inputID').value)">
+            Imprimir Numeros
+   
+        </button>
+        <button onclick="esparoimpar(document.getElementById('inputID').value)">
+                ¿Es Par o Impar?
+    
+                
+        </button>
+        <button onclick="esmultiplode3ono(document.getElementById('inputID').value)">
+                ¿Es Multiplo De 3 o No?
+        </button>
+
+        <button onclick="sumar(document.getElementById('inputID').value,document.getElementById('inputID2').value)">
+            Sumar Numeros 
+    </button>
+
+    <button onclick="multiplicar(document.getElementById('inputID').value,document.getElementById('inputID2').value)">
+        Multiplicar Numeros 
+</button>
+
+<button onclick="dividir(document.getElementById('inputID').value,document.getElementById('inputID2').value)">
+    Dividir Numeros  
+</button>
+
+    </div>
+        
+    <div>
+    <label id = "resultsSection">
+
+    </label>
+    </div>
+       
+        
+        </body>
+
+</html>
+
